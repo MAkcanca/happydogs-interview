@@ -8,7 +8,7 @@ class DogReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DogReservation
-        fields = ('id', 'start_date', 'end_date', 'dog_name')
+        fields = ('id', 'start_date', 'end_date', 'dog_name', 'dog')
 
 
 class DogSerializer(serializers.ModelSerializer):
