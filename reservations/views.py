@@ -2,12 +2,13 @@
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
+from django.http import JsonResponse
 
 from .models import DogReservation, Dog
 from .serialiers import DogReservationSerializer, DogSerializer
-
+from datetime import timedelta, date
 from collections import namedtuple
-
+import random
 Range = namedtuple('Range', ['start', 'end'])
 
 # Consider using APIViews
@@ -61,3 +62,16 @@ class DogReservationViewSet(viewsets.ViewSet):
 
 class DogCreateView(generics.CreateAPIView):
     serializer_class = DogSerializer
+
+
+def fill_test_data(request):
+    Dog.objects.all().delete()
+    dog = Dog(first_name='Peanut', last_name='Butter')
+    dog.save()
+    start_date = date.today()
+    date_range = [start_date + timedelta(days=x) for x in range(30)]
+
+    # Needs randomization
+    for date_obj in date_range:
+        res = DogReservation(start_date=date_obj, end_date=date_obj, dog=dog)
+    return JsonResponse({"success": True})
