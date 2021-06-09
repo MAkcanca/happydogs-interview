@@ -4,9 +4,11 @@ from .models import DogReservation
 
 
 class DogReservationSerializer(serializers.ModelSerializer):
+    dog_name = serializers.CharField(source='dog', read_only=True)
+
     class Meta:
         model = DogReservation
-        fields = '__all__'
+        fields = ('id', 'start_date', 'end_date', 'dog_name')
 
 
 class DogSerializer(serializers.ModelSerializer):
