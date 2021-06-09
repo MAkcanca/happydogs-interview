@@ -1,9 +1,9 @@
 # from django.shortcuts import render
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
 
-from .models import DogReservation
-from .serialiers import DogReservationSerializer
+from .models import DogReservation, Dog
+from .serialiers import DogReservationSerializer, DogSerializer
 
 
 # Consider using APIViews
@@ -38,3 +38,7 @@ class DogReservationViewSet(viewsets.ViewSet):
         reservation = DogReservation.objects.get(id=pk)
         reservation.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class DogCreateView(generics.CreateAPIView):
+    serializer_class = DogSerializer

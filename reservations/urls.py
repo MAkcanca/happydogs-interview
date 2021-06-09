@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import DogReservationViewSet
+from .views import DogReservationViewSet, DogCreateView
 
 urlpatterns = [
     path('dog-reservations', DogReservationViewSet.as_view({
@@ -12,4 +12,5 @@ urlpatterns = [
         'put': 'update',
         'delete': 'destroy'
     })),
+    path('dogs/', DogCreateView.as_view())
 ]
