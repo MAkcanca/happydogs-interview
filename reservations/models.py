@@ -3,7 +3,8 @@ from django.db import models
 
 class Dog(models.Model):
     first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
+    last_name = models.CharField(
+        max_length=200, null=True, blank=True)  # Optional
 
 
 class DogReservation(models.Model):
