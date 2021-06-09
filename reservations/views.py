@@ -1,6 +1,7 @@
 # from django.shortcuts import render
 from rest_framework import viewsets, status, generics
 from rest_framework.response import Response
+from rest_framework.exceptions import APIException
 
 from .models import DogReservation, Dog
 from .serialiers import DogReservationSerializer, DogSerializer
@@ -16,6 +17,8 @@ class DogReservationViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = DogReservationSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        if(serializer.validated_data.get("start_date") > serializer.validated_data.get("end_date")):
+            raise APIException("Date's are incorrect")
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
