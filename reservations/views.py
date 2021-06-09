@@ -6,6 +6,7 @@ from .models import DogReservation
 from .serialiers import DogReservationSerializer
 
 
+# Consider using APIViews
 class DogReservationViewSet(viewsets.ViewSet):
     def list(self, request):
         reservations = DogReservation.objects.all()
