@@ -1,3 +1,7 @@
 from django.test import TestCase
+from .models import Dog
 
-# Create your tests here.
+
+class DogTestCase(TestCase):
+    def setUp(self):
+        pass
