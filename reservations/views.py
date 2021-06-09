@@ -5,7 +5,7 @@ from rest_framework.exceptions import APIException
 from django.http import JsonResponse
 
 from .models import DogReservation, Dog
-from .serialiers import DogReservationSerializer, DogSerializer
+from .serializers import DogReservationSerializer, DogSerializer
 from datetime import timedelta, date
 from collections import namedtuple
 import random
