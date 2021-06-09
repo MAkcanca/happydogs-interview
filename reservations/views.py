@@ -74,4 +74,5 @@ def fill_test_data(request):
     # Needs randomization
     for date_obj in date_range:
         res = DogReservation(start_date=date_obj, end_date=date_obj, dog=dog)
+        res.save()
     return JsonResponse({"success": True})
